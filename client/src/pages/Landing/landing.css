@@ -1,0 +1,53 @@
+#landingDiv {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+}
+#landingHeading{
+    margin: 0 auto;
+    margin-top: 10%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: beige;
+    width: 90%;
+}
+#landingText {
+    margin: 0 auto;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    font-size: 1.25rem;
+    font-family: 'Helvetica',Arial,sans-serif;
+    font-weight: 600;
+    color: beige;
+    max-width: 80%;
+}
+
+#landingDiv .btn {
+    color: beige;
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: #007bc4;
+    border-color: #007bc4;
+    background-image: none;
+    text-shadow: none;
+    margin-bottom: 1%;
+    width: 80%;
+}
+
+#landingDiv .btn {
+    color: beige;
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: #007bc4;
+    border-color: #007bc4;
+    background-image: none;
+    text-shadow: none;
+    margin-bottom: 1%;
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 5%;
+}
