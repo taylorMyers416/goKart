@@ -1,4 +1,10 @@
 {
+  "scripts": {
+		"start": "node index.js"
+		, "dev": "cross-env NODE_ENV=development node index.js"
+
+		, "deploy": "git push --force heroku master"
+	},
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.3",
@@ -6,5 +12,9 @@
     "mongoose": "^5.4.2",
     "nightmare": "^3.0.1",
     "vo": "^4.0.2"
+  },
+   "devDependencies": {
+		"cross-env": "5.x"
   }
+  
 }
