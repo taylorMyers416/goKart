@@ -15,6 +15,8 @@
   },
    "devDependencies": {
 		"cross-env": "5.x"
+  },
+  "engines": {
+    "yarn": "1.x"
   }
-  
 }
