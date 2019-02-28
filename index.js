@@ -1,3 +1,9 @@
+const Nightmare = require('nightmare')
+, nightmare = Nightmare({
+	show: process.env.NODE_ENV == 'development' || false
+})
+console.log('Nightmare script started')
+console.log('==========')
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -23,4 +29,3 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/GoKart");
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
-
