@@ -1,10 +1,9 @@
 {
   "scripts": {
-		"start": "node index.js"
-		, "dev": "cross-env NODE_ENV=development node index.js"
-
-		, "deploy": "git push --force heroku master"
-	},
+    "start": "node index.js",
+    "dev": "cross-env NODE_ENV=development node index.js",
+    "deploy": "git push --force heroku master"
+  },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.3",
@@ -13,10 +12,16 @@
     "nightmare": "^3.0.1",
     "vo": "^4.0.2"
   },
-   "devDependencies": {
-		"cross-env": "5.x"
+  "devDependencies": {
+    "cross-env": "5.x"
   },
   "engines": {
     "yarn": "1.x"
-  }
+  },
+  "name": "walmart-recipe-cart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/taylorMyers416/goKart.git",
+  "author": "taylorMyers416 <taylorMyers416@gmail.com>",
+  "license": "MIT"
 }
