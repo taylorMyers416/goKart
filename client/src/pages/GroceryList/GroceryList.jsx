@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Table, Well } from 'react-bootstrap'
+import { Grid, Row, Col, Table, Well, FormControl } from 'react-bootstrap'
 import API from "../../utils/API";
 import CartButton from "../../components/cartButton/cartButton.jsx"
 
@@ -8,10 +8,12 @@ class GroceryList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groceryList: { key: [] }
+            groceryList: { key: [] },
+            username: "",
+            password: ""
         }
-        console.log(this.state)
     }
+
     componentDidMount() {
         API.getProducts(this.props.user._id)
             .then(res =>
@@ -59,13 +61,20 @@ class GroceryList extends Component {
         groceryList[groceryItem.category][groceryItem.index] = groceryItem
         this.setState({ groceryList })
     }
+
+    handleChange = event => {
+        let value = event.target.id
+        this.setState({ [value]: event.target.value },()=> console.log(this.state))
+    }
+
     loadWalmartCart = () => {
         let productArray = []
         const groceryList = this.state.groceryList
         Object.keys(groceryList).forEach(key => {
             for (let i = 0; i < groceryList[key].length; i++) {
+                console.log(groceryList[key][i])
                 let j = 0
-                while (groceryList[key][i].total > j) {
+                while (groceryList[key][i].cartTotal > j) {
                     let product = {
                         url: groceryList[key][i].link,
                     }
@@ -74,22 +83,38 @@ class GroceryList extends Component {
                 }
             }
         });
-        API.loadCart(productArray)
+        API.loadCart([[this.state.username],[this.state.password],productArray])
             .then(res => {
                 console.log(res.data)
             }
             )
             .catch(err => console.log(err));
     }
-    changesUnsavedWarning = () => {
-        // message if you leave all changes will be lost
-    }
-
     render() {
         return (
             <Grid>
                 <Row>
-                    <button className="myBtn" children="Load Walmart Cart" onClick={this.changeProductQuantity} />
+                        <FormControl
+                            id="username"
+                            type="text"
+                            placeholder="Grocery.walmart username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                            style = {{maxWidth: "400px"}}
+                            >
+                        </FormControl>
+                        <br />
+                        <FormControl
+                            id="password"
+                            type="password"
+                            placeholder="Grocery.walmart password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            style = {{maxWidth: "400px"}}
+                        />
+                        <br />
+                    <button className="myBtn" children="Load Walmart Cart" onClick={this.loadWalmartCart} />
+
                 </Row>
                 <Row>
                     <div style={{ paddingBottom: "100px" }} children=
@@ -97,15 +122,15 @@ class GroceryList extends Component {
                             <div key={key}>
                                 <Well style={{ backgroundColor: "#258FA7", backgroundImage: "none", color: "white", maxWidth: "600px", margin: "5% auto 0px", borderRadius: "0px" }} children={key.charAt(0).toUpperCase() + key.slice(1)} />
                                 <Table striped style={{ border: "1px #ddd solid", margin: "0px auto", maxWidth: "600px" }}>
-                                    <tbody className = "groceryListTbody" children={
+                                    <tbody className="groceryListTbody" children={
                                         this.state.groceryList[key].map((groceryItem, index) => (
                                             <tr key={groceryItem.name}>
                                                 <td
                                                     className="groceryListCart"><CartButton recipe={{ ...groceryItem, index: index }} updateCart={this.changeProductQuantity} />
-                                                    
+
                                                 </td>
                                                 <td>
-                                                    <p className = "groceryListTitle">{groceryItem.name}</p>
+                                                    <p className="groceryListTitle">{groceryItem.name}</p>
                                                     <p className="groceryListP">Product amount: {groceryItem.productAmount}{"\u00a0"}{groceryItem.productMeasurement}</p>
                                                     <p className="groceryListP">Recipes Need: {groceryItem.recipesAmount}{"\u00a0"}{groceryItem.productMeasurement}</p>
                                                 </td>

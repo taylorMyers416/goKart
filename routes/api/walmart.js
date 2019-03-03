@@ -11,10 +11,19 @@ router.post('/cartLoad', (req, res) => {
     });
 })
 
-function* run(items) {
+function* run(data) {
     const nightmare = Nightmare({
-        show: false
+        show: true
     });
+    const items = data[2]
+    yield nightmare
+        .goto("https://www.walmart.com/account/login?tid=0&vid=2&returnUrl=%2F")
+        .wait('#email')
+        .type("#email",data[0])
+        .wait('#password')
+        .type("#password",data[1])
+        .click(".button.m-margin-top")
+        .wait(10000)   
     for (let i = 0; i < items.length; i++) {
         yield nightmare
             .goto(items[i].url)
