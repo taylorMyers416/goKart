@@ -21,7 +21,7 @@ class GroceryList extends Component {
                 this.setState({ products: res.data }, () => this.createGroceryList())
             )
             .catch(err => console.log(err));
-        if (this.props.user.user == "demo") {
+        if (this.props.user.user === "demo") {
             this.setState({ display: "none" })
         }
     }

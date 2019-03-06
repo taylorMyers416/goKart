@@ -4,7 +4,7 @@
 		"heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn run build",
 		"dev": "cross-env NODE_ENV=development node index.js",
 		"deploy": "git push --force heroku master",
-		"postdeploy": "cd scripts && node seeds.js"
+		"postdeploy": "cd scripts && node seed.js"
 	},
 	"dependencies": {
 		"bcrypt-nodejs": "^0.0.3",
