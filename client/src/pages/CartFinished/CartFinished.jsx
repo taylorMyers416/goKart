@@ -6,7 +6,7 @@ class CartFinished extends Component {
         let h5
         if(this.props.user.user === "demo"){
             h5 = <div>
-                <h5 id = "landingText" >Login into grocery.walmart.com to see your cart!</h5>
+                <h5 id = "landingText" >Login into <a href = "https://grocery.walmart.com/">grocery.walmart.com</a> to see your cart!</h5>
                 <p>Username: gokartdemo@gmail.com, Password: gokart</p>
                 </div>
         } else {

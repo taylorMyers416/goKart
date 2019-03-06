@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ user, auth: true, cart: user.cart }, () => {
       from ?
         this.props.history.push(from.pathname) :
-        this.props.history.push("/landing")
+        this.props.history.push("/recipes")
     })
   }
 
@@ -40,7 +40,6 @@ class App extends Component {
   componentDidMount() {
   }
   updateCart = newRecipe => {
-
     let newCart = this.state.cart
     if (newRecipe.cartTotal === 0) {
       newCart = newCart.filter(recipe => recipe._id !== newRecipe._id)
@@ -57,6 +56,10 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  emptyCart = () => {
+    this.setState({cart: []})
+  }
+
   render() {
 
     return (
@@ -65,9 +68,8 @@ class App extends Component {
       <div  style={{ height: "100%"}}>
         
 
-        <Route exact path="/landing"
-          render={(routeProps) => (
-            <Landing {...routeProps} />
+        <Route exact path="/landing"render={(routeProps) => (
+            <Landing  {...routeProps} auth={this.state.auth} redirect={this.redirect.bind(this)}/>
           )} />
 
         <PrivateRoute
@@ -82,6 +84,7 @@ class App extends Component {
           exact path="/cart"
           component={Cart}
           updateCart={this.updateCart.bind(this)}
+          emptyCart={this.emptyCart.bind(this)}
           auth={this.state.auth}
           user={this.state.user}
           cart={this.state.cart}

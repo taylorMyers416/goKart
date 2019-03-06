@@ -7,13 +7,13 @@ const URL = 'https://grocery.walmart.com/';
 // Matches with "/api/walmart/cartLoad"
 router.post('/cartLoad', (req, res) => {
     vo(run(req.body))(function () {
-        res.json("Cart loaded!")
+        res.json("Cart loading!")
     });
 })
 
 function* run(data) {
     const nightmare = Nightmare({
-        show: true
+        show: false
     });
     const items = data[2]
     yield nightmare

@@ -24,6 +24,8 @@ class Cart extends Component {
                 cartFinished ={this.changeComponent.bind(this)}
                 cart={this.props.cart}
                 user={this.props.user}
+                updateCart={this.props.updateCart}
+                emptyCart={this.props.emptyCart}
             />
         const cartFinished = <CartFinished  user = {this.props.user}/>
         let activeComponent

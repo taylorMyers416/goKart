@@ -70,7 +70,15 @@ class GroceryList extends Component {
         let value = event.target.id
         this.setState({ [value]: event.target.value })
     }
-
+    updateCartTotal = async(recipes) => {
+        for (let i = 0; i < recipes.length; i++) {
+            let newRecipe = recipes[i]
+            newRecipe.cartTotal = 0
+            await API.updateRecipe(newRecipe._id,newRecipe)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));  
+        }
+    }
     loadWalmartCart = () => {
         let productArray = []
         const groceryList = this.state.groceryList
@@ -95,6 +103,10 @@ class GroceryList extends Component {
             password = this.state.password
         }
         this.props.cartFinished("cartFinished")
+        this.updateCartTotal(this.props.cart)
+        API.updateUser(this.props.user._id,{cart: []})
+            .then(res => this.props.emptyCart())
+            .catch(err => console.log(err));  
         API.loadCart([username, password, productArray])
             .then(res => console.log(res))
             .catch(err => console.log(err));

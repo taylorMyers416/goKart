@@ -10,8 +10,10 @@ class CartList extends Component {
     }
     updateCart = (updatedRecipe) => {
         API.updateRecipe(updatedRecipe._id, updatedRecipe)
+        console.log(updatedRecipe)
             .then(res => {
                 this.props.updateCart(updatedRecipe)
+                
             })
             .catch(err => console.log(err));
     }
