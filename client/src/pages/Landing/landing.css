@@ -52,9 +52,24 @@
     margin-top: 5%;
 }
 
-@media only screen and (max-width: 768) {
+@media only screen and (max-width: 768px) {
     #landingDiv img {
-      width: 150px;
-      height: auto;
+      width: 250px!important;
+      height: auto!important;
+    }
+    #landingWords {
+        margin-top: 0px!important;
+        width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    #landingDiv .col-sm-6 {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    #landingHeading {
+        margin-top: 0px;
     }
   }

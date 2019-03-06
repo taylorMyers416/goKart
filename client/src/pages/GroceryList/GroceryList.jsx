@@ -94,22 +94,22 @@ class GroceryList extends Component {
             username = this.state.username
             password = this.state.password
         }
-        API.loadCart(username, password, productArray)
+        this.props.cartFinished("cartFinished")
+        API.loadCart([username, password, productArray])
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
     render() {
-        console.log(this.props.user)
         return (
-            <Grid>
-                <Row style={{ display: this.state.display }}>
+            <Grid style = {{paddingTop: "60px"}}>
+                <Row style={{ }}>
                     <FormControl
                         id="username"
                         type="text"
                         placeholder="Grocery.walmart username"
                         value={this.state.username}
                         onChange={this.handleChange}
-                        style={{ maxWidth: "400px" }}
+                        style={{ maxWidth: "400px",  display: this.state.display}}
                     >
                     </FormControl>
                     <br />
@@ -119,7 +119,7 @@ class GroceryList extends Component {
                         placeholder="Grocery.walmart password"
                         value={this.state.password}
                         onChange={this.handleChange}
-                        style={{ maxWidth: "400px" }}
+                        style={{ maxWidth: "400px", display: this.state.display}}
                     />
                     <br />
                     <button className="myBtn" children="Load Walmart Cart" onClick={this.loadWalmartCart} />

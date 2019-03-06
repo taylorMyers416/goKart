@@ -25,7 +25,7 @@ class Cart extends Component {
                 cart={this.props.cart}
                 user={this.props.user}
             />
-        const cartFinished = <CartFinished />
+        const cartFinished = <CartFinished  user = {this.props.user}/>
         let activeComponent
         if (this.state.activeComponent === "cartList") {
             activeComponent = cartList

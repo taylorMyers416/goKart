@@ -20,7 +20,7 @@ class CartList extends Component {
         let display = "none";
         if (this.props.cart.length < 1) { display = "inherit" }
         return (
-            <Grid>
+            <Grid style = {{paddingTop: "60px"}}>
 
                 <Row>
                     <Col>

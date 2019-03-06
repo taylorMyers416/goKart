@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import API from "./utils/API";
 import Navbar from "./components/navbar/navbar.jsx"
 import { Route, Redirect, withRouter } from 'react-router-dom'
-import {Grid} from 'react-bootstrap'
 import Cart from "./pages/Cart/Cart.jsx"
 import Landing from "./pages/Landing"
 import Login from "./pages/Login"

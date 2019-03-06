@@ -98,7 +98,7 @@ class Recipes extends Component {
     }
     render() {
         return (
-            <Grid>
+            <Grid style = {{paddingTop: "80px"}}>
                 <Row id="mainDiv">
                     <Col id="recipeButtons" xs={12}>
                         <button className = "myBtn"children="Create New Recipe" onClick={this.createNewRecipe} />
