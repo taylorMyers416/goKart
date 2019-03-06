@@ -94,7 +94,6 @@ class cartButton extends Component {
                 </button>
                 <FormControl
                     style={this.state.input.style}
-                    id="input.value"
                     type="text"
                     value={this.state.input.value}
                     onChange={this.inputOnChange}

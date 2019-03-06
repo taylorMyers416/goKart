@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Table, Well, FormControl } from 'react-bootstrap'
+import { Grid, Row, Table, Well, FormControl } from 'react-bootstrap'
 import API from "../../utils/API";
 import CartButton from "../../components/cartButton/cartButton.jsx"
 
@@ -10,7 +10,8 @@ class GroceryList extends Component {
         this.state = {
             groceryList: { key: [] },
             username: "",
-            password: ""
+            password: "",
+            display: "block"
         }
     }
 
@@ -20,6 +21,9 @@ class GroceryList extends Component {
                 this.setState({ products: res.data }, () => this.createGroceryList())
             )
             .catch(err => console.log(err));
+        if (this.props.user.user == "demo") {
+            this.setState({ display: "none" })
+        }
     }
 
     createGroceryList = () => {
@@ -64,7 +68,7 @@ class GroceryList extends Component {
 
     handleChange = event => {
         let value = event.target.id
-        this.setState({ [value]: event.target.value },()=> console.log(this.state))
+        this.setState({ [value]: event.target.value })
     }
 
     loadWalmartCart = () => {
@@ -72,7 +76,6 @@ class GroceryList extends Component {
         const groceryList = this.state.groceryList
         Object.keys(groceryList).forEach(key => {
             for (let i = 0; i < groceryList[key].length; i++) {
-                console.log(groceryList[key][i])
                 let j = 0
                 while (groceryList[key][i].cartTotal > j) {
                     let product = {
@@ -83,36 +86,42 @@ class GroceryList extends Component {
                 }
             }
         });
-        API.loadCart([[this.state.username],[this.state.password],productArray])
-            .then(res => {
-                console.log(res.data)
-            }
-            )
+        let username, password
+        if (this.props.user.user === "demo") {
+            username = "gokartdemo@gmail.com"
+            password = "gokart"
+        } else {
+            username = this.state.username
+            password = this.state.password
+        }
+        API.loadCart(username, password, productArray)
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
     render() {
+        console.log(this.props.user)
         return (
             <Grid>
-                <Row>
-                        <FormControl
-                            id="username"
-                            type="text"
-                            placeholder="Grocery.walmart username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            style = {{maxWidth: "400px"}}
-                            >
-                        </FormControl>
-                        <br />
-                        <FormControl
-                            id="password"
-                            type="password"
-                            placeholder="Grocery.walmart password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            style = {{maxWidth: "400px"}}
-                        />
-                        <br />
+                <Row style={{ display: this.state.display }}>
+                    <FormControl
+                        id="username"
+                        type="text"
+                        placeholder="Grocery.walmart username"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        style={{ maxWidth: "400px" }}
+                    >
+                    </FormControl>
+                    <br />
+                    <FormControl
+                        id="password"
+                        type="password"
+                        placeholder="Grocery.walmart password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        style={{ maxWidth: "400px" }}
+                    />
+                    <br />
                     <button className="myBtn" children="Load Walmart Cart" onClick={this.loadWalmartCart} />
 
                 </Row>

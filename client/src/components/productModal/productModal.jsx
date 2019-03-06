@@ -93,7 +93,7 @@ class productModal extends Component {
                 { key: "optionGrams", value: "g", label: "Grams" },
                 { key: "optionMilliliter", value: "ml", label: "Milliliter" },
                 { key: "optionFluidOunces.", value: "fl oz.", label: "Fluid Ounces." },
-                { key: "optionEach", value: "each", label: "Each/Whole" }
+                { key: "optionEach", value: "whole", label: "Each/Whole" }
               ]}
             />
             <br />

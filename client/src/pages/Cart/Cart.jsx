@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GroceryList from '../GroceryList/GroceryList'
 import CartList from '../CartList/CartList'
-import ThankyouPage from '../thankyouPage/thankyouPage'
+import CartFinished from '../CartFinished/CartFinished'
 
 class Cart extends Component {
 
@@ -21,18 +21,18 @@ class Cart extends Component {
             />
         const groceryList =
             <GroceryList
-                thankyouPage={this.changeComponent.bind(this)}
+                cartFinished ={this.changeComponent.bind(this)}
                 cart={this.props.cart}
                 user={this.props.user}
             />
-        const thankyouPage = <ThankyouPage />
+        const cartFinished = <CartFinished />
         let activeComponent
         if (this.state.activeComponent === "cartList") {
             activeComponent = cartList
         } else if (this.state.activeComponent === "groceryList") {
             activeComponent = groceryList
         } else {
-            activeComponent = thankyouPage
+            activeComponent = cartFinished
         }
         return (
             <div>

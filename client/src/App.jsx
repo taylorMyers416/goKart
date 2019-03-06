@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <div>
       <Navbar cart={this.state.cart} auth={this.state.auth} signout={this.signout.bind(this)} />
-      <Grid className = "container" style={{ height: "100%",paddingTop: "60px" }}>
+      <div  style={{ height: "100%"}}>
         
 
         <Route exact path="/landing"
@@ -95,7 +95,7 @@ class App extends Component {
           render={(routeProps) => (
             <Landing {...routeProps} />
           )} />
-      </Grid>
+      </div>
       </div>
     )
   }

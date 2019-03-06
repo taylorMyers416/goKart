@@ -1,37 +1,23 @@
 import React from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import './landing.css'
+import photo from "../../utils/images/landingPageImage.png"
 
 const Landing = () => {
         return (
-            <Grid id = "landingDiv">
-                <Row>
-                    <Col xs={12}>
+            <Grid id = "landingDiv" style = {{minWidth: "100vw", minHeight: "100vh",background: "#E3E3E3"}}>
+                <Row style = {{marginTop: "80px"}}>
+                    <Col  xs={12} sm= {6}>
+                        <img alt = "robot checking out groceries" src = {photo} style = {{width: "80%",height: "auto",}}/>
+                    </Col>
+                    <Col style = {{marginTop: "40px"}}xs={12} sm = {6}>
                         <h3 id = "landingHeading">
                             Automate Your Walmart Online Grocery Shopping!
                         </h3>
+                        <h5 id = "landingText" >Create recipes and add the ingredients to your grocery.walmart account!</h5>
+                        <button style = {{marginRight: "15px"}}className = "myBtn" children="Demo" />
+                        <button className = "myBtn"  children="Sign Up/Login" />
                     </Col>
-
-                </Row>
-                <Row>
-                    <Col id = "landingTextDiv" xs={12}>
-                        <p id = "landingText">
-                            Takes the hassle out of walmart grocery shopping! No more manually searching and
-                            adding every single ingredient.
-                        </p>
-                    </Col>
-                </Row>
-                <Row >
-                    <Col className = {"buttonDiv"} xs={12}>  
-                            <Button   children="Sign Up!" />
-                    </Col>
-                    <Col className = {"buttonDiv"} xs={12}>  
-                            <Button  children="Login" />
-                    </Col>
-                    <Col className = {"buttonDiv"} xs={12}>  
-                            <Button  children="Demo" />
-                    </Col>
-                    
                 </Row>
             </Grid>
         )

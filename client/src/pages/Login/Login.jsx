@@ -31,11 +31,19 @@ class Login extends Component {
         })
     }
 
-    login = event => {
+    login = (event,button) => {
         event.preventDefault()
+        let user,password
+        if(button === "demo"){
+            user = "demo"
+            password = "demo"
+        } else {
+            user =  this.state.usernameLoginInput
+            password = this.state.passwordLoginInput
+        }
         API.getUser({
-            user: this.state.usernameLoginInput,
-            password: this.state.passwordLoginInput,
+            user: user,
+            password: password,
         })
             .then(res => {
                 if (typeof (res.data) === "string") {
@@ -96,8 +104,7 @@ class Login extends Component {
                             <Tab.Content animation>
                                 <Tab.Pane eventKey="first">
                                     <form>
-                                        <FormGroup
-                                        >
+                                        <FormGroup style = {{textAlign: "center"}}>
                                             <FormControl
                                                 id="usernameLoginInput"
                                                 type="text"
@@ -113,7 +120,8 @@ class Login extends Component {
                                                 onChange={this.handleChange}
                                             />
                                             <p style={{ color: "red", width: "85%", margin: "0 auto" }}>{this.state.valadationLogin}</p>
-                                            <button className = "myBtn" children="login" onClick={(event) => this.login(event)} />
+                                            <button style={{ display: "inline-block", marginRight: "15px"}} className = "myBtn" children="login" onClick={(event) => this.login(event,"login")} />
+                                            <button  style={{ display: "inline-block"}} className = "myBtn" children="demo" onClick={(event) => this.login(event,"demo")} />
 
                                             <FormControl.Feedback />
                                         </FormGroup>

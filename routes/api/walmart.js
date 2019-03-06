@@ -7,7 +7,7 @@ const URL = 'https://grocery.walmart.com/';
 // Matches with "/api/walmart/cartLoad"
 router.post('/cartLoad', (req, res) => {
     vo(run(req.body))(function () {
-        res.json("Cart Loaded!")
+        res.json("Cart loaded!")
     });
 })
 
@@ -23,7 +23,7 @@ function* run(data) {
         .wait('#password')
         .type("#password",data[1])
         .click(".button.m-margin-top")
-        .wait(10000)   
+        .wait("nav")
     for (let i = 0; i < items.length; i++) {
         yield nightmare
             .goto(items[i].url)
